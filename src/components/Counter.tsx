@@ -1,17 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
 
+function formatNumber(n: number, decimals: number): string {
+  const fixed = n.toFixed(decimals);
+  // Add commas for thousands
+  return fixed.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 export function Counter({
   to,
-  duration = 2,
-  prefix = "",
-  suffix = "",
+  duration = 2.2,
   decimals = 0,
 }: {
   to: number;
   duration?: number;
-  prefix?: string;
-  suffix?: string;
   decimals?: number;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -24,9 +26,11 @@ export function Counter({
     const start = performance.now();
     const tick = (now: number) => {
       const t = Math.min(1, (now - start) / (duration * 1000));
-      const eased = 1 - Math.pow(1 - t, 3);
+      // Ease-out-expo for dramatic deceleration
+      const eased = t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
       setValue(to * eased);
       if (t < 1) raf = requestAnimationFrame(tick);
+      else setValue(to);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
@@ -34,9 +38,7 @@ export function Counter({
 
   return (
     <span ref={ref} className="tabular-nums">
-      {prefix}
-      {value.toFixed(decimals)}
-      {suffix}
+      {formatNumber(value, decimals)}
     </span>
   );
 }
