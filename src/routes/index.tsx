@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -29,28 +29,17 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { Reveal } from "@/components/Reveal";
 import { Counter } from "@/components/Counter";
 
-const heroImg = "/assets/hero-infrastructure.jpg";
-const sOfc = "/assets/service-ofc.jpg";
-const sPiling = "/assets/service-piling.jpg";
-const sCivil = "/assets/service-civil.jpg";
-const sMetro = "/assets/service-metro.jpg";
-const sRoads = "/assets/service-roads.jpg";
-const sWater = "/assets/service-water.jpg";
-const sElec = "/assets/service-electrical.jpg";
-const sTele = "/assets/service-telecom.jpg";
-const machinery = "/assets/machinery-fleet.jpg";
-const aboutImg = "/assets/about-team.jpg";
-const ctaImg = "/assets/cta-bg.jpg";
-const pMetro = "/assets/project-metro.jpg";
-const pHighway = "/assets/project-highway.jpg";
-const pOfc = "/assets/project-ofc.jpg";
+import { 
+  heroImg, sOfc, sPiling, sCivil, sMetro, sRoads, sWater, sElec, sTele, machinery, aboutImg, ctaImg, pMetro, pHighway, pOfc, dArvind,
+  metrics, services, projects, clients, whyChoose, certifications, timeline
+} from "@/data";
 
 export const Route = createFileRoute("/")(({
   head: () => ({
     meta: [
       {
         title:
-          "Top Infrastructure & EPC Construction Company in India | Sangya Traders",
+          "Top Infrastructure & EPC Construction Company in India | Sangya Traders & Construction",
       },
       {
         name: "description",
@@ -60,11 +49,11 @@ export const Route = createFileRoute("/")(({
       {
         name: "keywords",
         content:
-          "Top infrastructure company India, EPC contractors India, OFC laying contractor, heavy piling contractor India, Jal Jeevan Mission contractor, metro infrastructure company, civil construction company, telecom infrastructure services, Sangya Traders",
+          "Top infrastructure company India, EPC contractors India, OFC laying contractor, heavy piling contractor India, Jal Jeevan Mission contractor, metro infrastructure company, civil construction company, telecom infrastructure services, Sangya Traders & Construction",
       },
       {
         property: "og:title",
-        content: "Top Infrastructure & EPC Construction Company in India | Sangya Traders",
+        content: "Top Infrastructure & EPC Construction Company in India | Sangya Traders & Construction",
       },
       {
         property: "og:description",
@@ -75,7 +64,7 @@ export const Route = createFileRoute("/")(({
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { property: "og:url", content: "https://sangyatraders.com" },
-      { name: "twitter:title", content: "Top Infrastructure & EPC Construction Company in India | Sangya Traders" },
+      { name: "twitter:title", content: "Top Infrastructure & EPC Construction Company in India | Sangya Traders & Construction" },
       { name: "twitter:description", content: "India's premier infrastructure execution company. 16+ years of large-scale execution across 18 states." },
       { name: "twitter:image", content: heroImg },
     ],
@@ -91,68 +80,6 @@ export const Route = createFileRoute("/")(({
   }),
   component: Home,
 }));
-
-/* ──────────────── DATA ──────────────── */
-
-const metrics = [
-  { label: "Years of Execution", value: 16, suffix: "+" },
-  { label: "Turnover Capability", value: 200, prefix: "₹", suffix: " Cr" },
-  { label: "Machinery Strength", value: 30, prefix: "₹", suffix: " Cr" },
-  { label: "Major Projects", value: 100, suffix: "+" },
-  { label: "KM Fiber Deployed", value: 3000, suffix: "+" },
-  { label: "States Covered", value: 18, suffix: "+" },
-];
-
-const services = [
-  { icon: Cable, title: "OFC / Fiber Laying", desc: "Trenching, HDD, blowing and splicing across national backbone networks.", img: sOfc },
-  { icon: Drill, title: "Piling & Foundations", desc: "Bored cast-in-situ, secant and contiguous piling for heavy infrastructure.", img: sPiling },
-  { icon: Building2, title: "Civil Construction", desc: "RCC structures, industrial buildings and large-scale civil works.", img: sCivil },
-  { icon: Train, title: "Metro Infrastructure", desc: "Elevated viaducts, station works and depot civil for urban metro corridors.", img: sMetro },
-  { icon: RouteIcon, title: "Roads & Highways", desc: "National highways, expressways, flexible and rigid pavement execution.", img: sRoads },
-  { icon: Waves, title: "Water Infrastructure", desc: "Pipelines, OHTs and Jal Jeevan Mission rural water supply networks.", img: sWater },
-  { icon: Zap, title: "Electrical Infrastructure", desc: "HT/LT lines, transmission towers, substations and grid utility work.", img: sElec },
-  { icon: Radio, title: "Telecom Infrastructure", desc: "Tower erection, in-building solutions and 4G/5G rollout support.", img: sTele },
-];
-
-const projects = [
-  { name: "HFCL OFC — UP East", client: "HFCL", type: "Telecom · OFC Backbone", location: "Uttar Pradesh", img: pOfc },
-  { name: "Kanpur Metro Viaduct", client: "AFCONS / UPMRC", type: "Metro · Civil", location: "Kanpur", img: pMetro },
-  { name: "NH Six-Lane Package", client: "NHAI / L&T", type: "Highway · Pavement", location: "Madhya Pradesh", img: pHighway },
-  { name: "Jal Jeevan Mission", client: "GoI / State PHED", type: "Water · Pipeline", location: "Bihar & UP", img: sWater },
-  { name: "Reliance Jio FTTH", client: "Reliance Jio", type: "Telecom · FTTH", location: "PAN India", img: sOfc },
-  { name: "AFCONS Piling Package", client: "AFCONS", type: "Piling · Foundation", location: "Multiple Sites", img: sPiling },
-];
-
-const clients = [
-  "L&T", "AFCONS", "Reliance Jio", "HFCL", "Monte Carlo", "NCC",
-  "KEI", "Vodafone Idea", "NHAI", "Sterlite", "Dilip Buildcon", "UPMRC",
-];
-
-const whyChoose = [
-  { icon: ShieldCheck, title: "Proven Large-Scale Execution", desc: "16+ years of multi-crore project delivery across telecom, metro and highways." },
-  { icon: HardHat, title: "Trusted by Industry Leaders", desc: "Repeat partnerships with L&T, AFCONS, HFCL, Reliance Jio and NHAI." },
-  { icon: MapIcon, title: "Pan-India Operations", desc: "Active project sites across 18+ Indian states with localized execution teams." },
-  { icon: Gauge, title: "Strong Financial Capability", desc: "₹200 Cr turnover capability with ₹30 Cr owned machinery balance sheet." },
-  { icon: Cpu, title: "Experienced Engineering Team", desc: "In-house planning, QA/QC, billing and project management cadre." },
-  { icon: CheckCircle2, title: "Timely Project Delivery", desc: "Milestone-driven delivery with rigorous safety and compliance discipline." },
-];
-
-const certifications = [
-  { label: "ISO 9001:2015", note: "Quality Management" },
-  { label: "ISO 14001:2015", note: "Environment" },
-  { label: "ISO 45001:2018", note: "Safety & Health" },
-  { label: "MSME Udyam", note: "Registered Enterprise" },
-  { label: "GST · PAN · TIN", note: "Statutory Compliant" },
-  { label: "Work Orders", note: "L&T · AFCONS · HFCL" },
-];
-
-const timeline = [
-  { year: "2007", t: "Founded", d: "Established in Lucknow as an infrastructure execution firm." },
-  { year: "2012", t: "Telecom Scale", d: "Entered OFC backbone laying for national telecom operators." },
-  { year: "2017", t: "Metro & Civil", d: "Expanded into metro viaduct works and heavy piling foundations." },
-  { year: "2021", t: "Jal Jeevan Mission", d: "Began rural water infrastructure execution across UP and Bihar." },
-  { year: "2025", t: "PAN India", d: "Active across 18+ states with ₹200 Cr turnover capability." },
-];
 
 /* ──────────────── CUSTOM CURSOR ──────────────── */
 
@@ -220,7 +147,7 @@ function Preloader({ onDone }: { onDone: () => void }) {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="font-display text-[11px] uppercase tracking-[0.6em] text-muted-foreground mb-8"
+        className="font-display text-[10px] md:text-[11px] uppercase tracking-[0.6em] text-muted-foreground mb-8 text-center px-4 leading-relaxed"
       >
         Est. 2007 · PAN India
       </motion.p>
@@ -228,9 +155,11 @@ function Preloader({ onDone }: { onDone: () => void }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.15 }}
-        className="font-display text-4xl uppercase tracking-wider text-foreground mb-10"
+        className="font-display text-2xl md:text-4xl uppercase tracking-wider text-foreground mb-10 text-center px-6 leading-tight max-w-[90vw]"
       >
-        Sangya Traders
+        <span className="block md:inline">Sangya Traders</span>
+        <span className="block my-2 md:inline md:mx-3 md:my-0 text-gold">&</span>
+        <span className="block md:inline">Construction</span>
       </motion.h1>
       <div className="w-48 h-[1px] bg-border overflow-hidden">
         <motion.div
@@ -262,10 +191,8 @@ function Home() {
         <Services />
         <FeaturedProjects />
         <ClientsWall />
-        <MachinerySection />
         <WhyChooseUs />
-        <Certifications />
-        <About />
+        <DirectorVision />
         <CtaBlock />
       </main>
       <SiteFooter />
@@ -408,21 +335,23 @@ function Hero() {
 
 function TrustMetrics() {
   return (
-    <section className="border-y border-border py-28" style={{ background: "oklch(0.07 0.005 240)" }}>
+    <section className="border-y border-border py-20" style={{ background: "oklch(0.07 0.005 240)" }}>
       <div className="container-x">
         <Reveal>
-          <SectionEyebrow>By the Numbers</SectionEyebrow>
-          <h2 className="font-display mt-4 max-w-3xl text-4xl uppercase md:text-5xl">
-            Scale that defines <span className="text-gradient-gold">credibility</span>
-          </h2>
+          <div className="flex flex-col items-center text-center">
+            <SectionEyebrow>By the Numbers</SectionEyebrow>
+            <h2 className="font-display mt-3 max-w-3xl text-4xl uppercase md:text-5xl">
+              Scale that defines <span className="text-gradient-gold">credibility</span>
+            </h2>
+          </div>
         </Reveal>
 
         <div
-          className="mt-16 grid grid-cols-2 gap-px md:grid-cols-3 lg:grid-cols-6"
+          className="mt-10 grid grid-cols-2 gap-px md:grid-cols-3 lg:grid-cols-6"
           style={{ background: "var(--border)" }}
         >
           {metrics.map((m, i) => (
-            <Reveal key={m.label} delay={i * 0.06} className="group relative overflow-hidden p-8 cursor-default" style={{ background: "oklch(0.07 0.005 240)" }}>
+            <Reveal key={m.label} delay={i * 0.06} className="group relative flex flex-col items-center text-center overflow-hidden p-6 xl:p-8 cursor-default" style={{ background: "oklch(0.07 0.005 240)" }}>
               <div
                 className="absolute inset-x-0 top-0 h-px scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
                 style={{ background: "var(--gold)", boxShadow: "0 0 12px 0 oklch(0.72 0.16 78 / 0.6)" }}
@@ -431,10 +360,12 @@ function TrustMetrics() {
                 className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                 style={{ background: "radial-gradient(ellipse 80% 80% at 50% 0%, oklch(0.72 0.16 78 / 0.05) 0%, transparent 70%)" }}
               />
-              <p className="font-numeric text-5xl text-foreground transition-colors group-hover:text-gold md:text-6xl">
-                {m.prefix}<Counter to={m.value} />{m.suffix}
+              <p className="font-numeric flex items-baseline justify-center whitespace-nowrap text-4xl text-foreground transition-colors group-hover:text-gold xl:text-5xl">
+                {m.prefix && <span>{m.prefix}</span>}
+                <Counter to={m.value} />
+                {m.suffix && <span className="ml-1 text-2xl xl:text-3xl">{m.suffix.trim()}</span>}
               </p>
-              <p className="mt-4 text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
+              <p className="mt-3 text-[9px] uppercase tracking-[0.2em] text-muted-foreground xl:text-[10px] xl:tracking-[0.28em]">
                 {m.label}
               </p>
             </Reveal>
@@ -472,12 +403,23 @@ function Services() {
           className="mt-16 grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-4"
           style={{ background: "var(--border)" }}
         >
-          {services.map((s, i) => (
-            <Reveal key={s.title} delay={i * 0.05}>
-              <ServiceCard {...s} />
+          {services.slice(0, 4).map((s, i) => (
+            <Reveal key={s.title} delay={i * 0.06}>
+              <ServiceCard {...s} index={i + 1} />
             </Reveal>
           ))}
         </div>
+
+        <Reveal delay={0.2} className="mt-16 flex justify-center">
+          <Link
+            to="/services"
+            className="btn-gold group inline-flex items-center gap-3 px-8 py-4 text-[11px] font-bold uppercase tracking-[0.28em]"
+            style={{ borderRadius: "2px" }}
+          >
+            View All Services
+            <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+          </Link>
+        </Reveal>
       </div>
     </section>
   );
@@ -488,11 +430,13 @@ function ServiceCard({
   title,
   desc,
   img,
+  index = 1,
 }: {
   icon: typeof Cable;
   title: string;
   desc: string;
   img: string;
+  index?: number;
 }) {
   return (
     <div className="relative h-full" style={{ background: "var(--gold)" }}>
@@ -517,6 +461,13 @@ function ServiceCard({
         <div className="absolute inset-x-0 top-0 h-[1px] scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
           style={{ background: "linear-gradient(90deg, transparent, var(--gold), transparent)" }} />
 
+        {/* Service index number */}
+        <span
+          className="absolute right-5 top-5 font-numeric text-5xl font-bold leading-none opacity-20 transition-opacity duration-500 group-hover:opacity-40"
+          style={{ color: "var(--gold)" }}
+        >
+          {String(index).padStart(2, "0")}
+        </span>
         <span
           className="absolute left-5 top-5 grid h-11 w-11 place-items-center text-gold transition-all duration-500 group-hover:-translate-y-1 group-hover:rotate-[-6deg]"
           style={{
@@ -563,16 +514,16 @@ function FeaturedProjects() {
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <a href="#contact" className="group inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.28em] text-gold">
+            <Link to="/projects" className="group inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.28em] text-gold">
               View all engagements <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
-            </a>
+            </Link>
           </Reveal>
         </div>
       </div>
 
       <div className="mt-16 overflow-x-auto pb-8 [scrollbar-width:thin] [scrollbar-color:var(--gold-dim)_transparent]">
         <div className="container-x flex gap-6 [scroll-snap-type:x_mandatory]">
-          {projects.map((p, i) => (
+          {projects.slice(0, 4).map((p, i) => (
             <Reveal
               key={p.name}
               delay={i * 0.06}
@@ -588,10 +539,10 @@ function FeaturedProjects() {
 }
 
 function ProjectCard({
-  name, client, type, location, img,
-}: { name: string; client: string; type: string; location: string; img: string }) {
+  slug, name, client, type, location, img,
+}: { slug: string; name: string; client: string; type: string; location: string; img: string }) {
   return (
-    <div className="relative h-[540px]" style={{ background: "var(--gold)" }}>
+    <Link to={`/projects/${slug}`} className="block relative h-[540px]" style={{ background: "var(--gold)" }}>
       <article
         className="beveled-tr card-premium group relative h-full overflow-hidden cursor-pointer"
         style={{ transition: "transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)" }}
@@ -643,14 +594,14 @@ function ProjectCard({
         </div>
       </div>
     </article>
-    </div>
+    </Link>
   );
 }
 
 function ClientsWall() {
   const row = [...clients, ...clients];
   return (
-    <section className="border-y border-border py-24" style={{ background: "var(--background)" }}>
+    <section className="border-y border-border py-20" style={{ background: "var(--background)" }}>
       <div className="container-x">
         <Reveal>
           <div className="flex flex-col items-center text-center">
@@ -662,23 +613,47 @@ function ClientsWall() {
         </Reveal>
       </div>
 
-      <div className="relative mt-14 overflow-hidden">
+      {/* Row 1 — left to right */}
+      <div className="relative mt-10 overflow-hidden">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-40"
           style={{ background: "linear-gradient(to right, var(--background), transparent)" }} />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-40"
           style={{ background: "linear-gradient(to left, var(--background), transparent)" }} />
-
-        <div className="flex w-max animate-marquee gap-4">
+        <div className="flex w-max animate-marquee gap-4 py-2">
           {row.map((c, i) => (
             <div
-              key={`${c}-${i}`}
-              className="group flex h-20 min-w-[200px] items-center justify-center px-10 transition-all duration-300 hover:border-gold/60 cursor-default"
+              key={`r1-${c}-${i}`}
+              className="group flex h-20 min-w-[220px] items-center justify-center px-10 cursor-default transition-all duration-300"
               style={{
                 border: "1px solid oklch(0.94 0.006 60 / 0.08)",
                 background: "oklch(0.09 0.006 240)",
               }}
             >
-              <span className="font-display text-xl uppercase tracking-[0.12em] text-muted-foreground transition-colors group-hover:text-gold">
+              <span className="font-display text-2xl font-bold uppercase tracking-[0.12em] text-muted-foreground transition-all duration-300 group-hover:text-foreground group-hover:scale-105">
+                {c}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Row 2 — right to left (reverse) */}
+      <div className="relative mt-3 overflow-hidden">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-40"
+          style={{ background: "linear-gradient(to right, var(--background), transparent)" }} />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-40"
+          style={{ background: "linear-gradient(to left, var(--background), transparent)" }} />
+        <div className="flex w-max animate-marquee-reverse gap-4 py-2">
+          {[...row].reverse().map((c, i) => (
+            <div
+              key={`r2-${c}-${i}`}
+              className="group flex h-20 min-w-[220px] items-center justify-center px-10 cursor-default transition-all duration-300"
+              style={{
+                border: "1px solid oklch(0.94 0.006 60 / 0.05)",
+                background: "oklch(0.08 0.005 240)",
+              }}
+            >
+              <span className="font-display text-2xl font-bold uppercase tracking-[0.12em] transition-all duration-300 group-hover:scale-105" style={{ color: "oklch(0.45 0.008 240)" }}>
                 {c}
               </span>
             </div>
@@ -689,84 +664,14 @@ function ClientsWall() {
   );
 }
 
-function MachinerySection() {
-  return (
-    <section id="capability" className="relative overflow-hidden py-36"
-      style={{ background: "oklch(0.07 0.005 240)" }}>
-      {/* Glow */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] opacity-8"
-        style={{ background: "radial-gradient(ellipse, oklch(0.72 0.16 78) 0%, transparent 70%)", filter: "blur(100px)" }} />
 
-      <div className="container-x relative z-10 grid items-center gap-16 lg:grid-cols-2">
-        <Reveal className="order-2 lg:order-1">
-          <SectionEyebrow>Execution Power</SectionEyebrow>
-          <h2 className="font-display mt-4 text-4xl uppercase md:text-6xl">
-            Powered by <span className="text-gradient-gold">advanced machinery</span>
-          </h2>
-          <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground">
-            ₹30 Cr of owned heavy machinery — piling rigs, excavators, cranes,
-            HDD machines, batching plants, pavers and rollers — deployed across
-            simultaneous project sites for accelerated delivery.
-          </p>
-
-          <div className="mt-10 grid grid-cols-2 gap-px" style={{ background: "var(--border)" }}>
-            {[
-              { i: Drill, label: "Piling Rigs" },
-              { i: Layers, label: "Excavators" },
-              { i: HardHat, label: "Tower Cranes" },
-              { i: Cable, label: "HDD Machines" },
-              { i: Building2, label: "Batching Plants" },
-              { i: RouteIcon, label: "Pavers & Rollers" },
-            ].map(({ i: I, label }) => (
-              <div
-                key={label}
-                className="group flex items-center gap-3 p-5 transition-colors duration-200 hover:bg-surface cursor-default"
-                style={{ background: "oklch(0.07 0.005 240)" }}
-              >
-                <I size={17} className="text-gold" strokeWidth={1.5} />
-                <span className="text-sm text-foreground">{label}</span>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.15} className="order-1 lg:order-2">
-          <div
-            className="relative aspect-[4/5] overflow-hidden"
-            style={{ border: "1px solid var(--border)" }}
-          >
-            <img
-              src={machinery}
-              alt="Sangya Traders heavy construction machinery fleet at dusk"
-              loading="lazy"
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-0"
-              style={{ background: "linear-gradient(to top, oklch(0.07 0.005 240 / 0.8) 0%, transparent 60%)" }} />
-            {/* Gold border glow on hover */}
-            <div className="absolute inset-0 opacity-0 transition-opacity duration-500 hover:opacity-100"
-              style={{ boxShadow: "inset 0 0 0 1px oklch(0.72 0.16 78 / 0.4)" }} />
-
-            <div className="absolute bottom-7 left-7 right-7 flex items-end justify-between">
-              <div>
-                <p className="font-numeric text-[9px] uppercase tracking-[0.35em] text-gold">Owned Fleet</p>
-                <p className="font-display mt-1 text-4xl text-foreground">₹30 Cr</p>
-              </div>
-              <p className="text-[9px] uppercase tracking-[0.35em] text-muted-foreground">Heavy Machinery</p>
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
 
 function WhyChooseUs() {
   return (
     <section className="relative border-y border-border py-36" style={{ background: "var(--background)" }}>
       <div className="container-x">
         <Reveal>
-          <SectionEyebrow>Why Sangya</SectionEyebrow>
+          <SectionEyebrow>Why Sangya Traders & Construction</SectionEyebrow>
           <h2 className="font-display mt-4 max-w-3xl text-4xl uppercase md:text-6xl">
             Engineered for trust.<br />Built for scale.
           </h2>
@@ -778,7 +683,7 @@ function WhyChooseUs() {
             <Reveal
               key={w.title}
               delay={i * 0.06}
-              className="group relative overflow-hidden p-9 cursor-default"
+              className="card-gold-border group relative overflow-hidden p-9 cursor-default"
               style={{ background: "oklch(0.09 0.006 240)" }}
             >
               {/* Corner glow on hover */}
@@ -786,23 +691,20 @@ function WhyChooseUs() {
                 style={{ background: "radial-gradient(ellipse 60% 60% at 0% 0%, oklch(0.72 0.16 78 / 0.07) 0%, transparent 70%)" }} />
 
               <span
-                className="grid h-12 w-12 place-items-center text-gold transition-all duration-400 group-hover:shadow-[0_0_20px_-4px_oklch(0.72_0.16_78/0.5)]"
+                className="grid h-12 w-12 place-items-center text-gold"
                 style={{
                   background: "oklch(0.72 0.16 78 / 0.08)",
                   border: "1px solid oklch(0.72 0.16 78 / 0.3)",
                   transition: "background 0.3s, box-shadow 0.3s",
                 }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "oklch(0.72 0.16 78 / 0.15)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "oklch(0.72 0.16 78 / 0.08)";
-                }}
               >
                 <w.icon size={20} strokeWidth={1.5} />
               </span>
-              <h3 className="font-display mt-7 text-xl uppercase">{w.title}</h3>
+              <h3 className="font-display mt-7 text-xl uppercase transition-colors duration-300 group-hover:text-gold">{w.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{w.desc}</p>
+              {/* Bottom gold line reveal */}
+              <div className="absolute bottom-0 left-0 right-0 h-px scale-x-0 transition-transform duration-500 group-hover:scale-x-100 origin-left"
+                style={{ background: "linear-gradient(90deg, var(--gold), transparent)" }} />
             </Reveal>
           ))}
         </div>
@@ -811,123 +713,76 @@ function WhyChooseUs() {
   );
 }
 
-function Certifications() {
-  return (
-    <section id="certifications" className="py-36" style={{ background: "oklch(0.07 0.005 240)" }}>
-      <div className="container-x">
-        <Reveal>
-          <SectionEyebrow>Certifications & Credentials</SectionEyebrow>
-          <h2 className="font-display mt-4 max-w-2xl text-4xl uppercase md:text-5xl">
-            Compliant. Audited. Accredited.
-          </h2>
-        </Reveal>
 
-        <div className="mt-14 grid grid-cols-2 gap-px md:grid-cols-3 lg:grid-cols-6"
-          style={{ background: "var(--border)" }}>
-          {certifications.map((c, i) => (
-            <Reveal
-              key={c.label}
-              delay={i * 0.05}
-              className="group flex flex-col items-center gap-3 p-9 text-center cursor-default hover:-translate-y-1 transition-transform duration-300"
-              style={{ background: "oklch(0.07 0.005 240)" }}
-            >
-              <div
-                className="grid h-12 w-12 place-items-center"
-                style={{
-                  border: "1px solid oklch(0.72 0.16 78 / 0.3)",
-                  background: "oklch(0.72 0.16 78 / 0.06)",
-                }}
-              >
-                <Award size={20} className="text-gold transition-transform group-hover:scale-110" strokeWidth={1.5} />
+
+
+
+function DirectorVision() {
+  return (
+    <section className="relative overflow-hidden py-32" style={{ background: "oklch(0.07 0.005 240)" }}>
+      {/* Background glow behind photo */}
+      <div className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-10"
+        style={{ background: "radial-gradient(ellipse, oklch(0.72 0.16 78) 0%, transparent 70%)", filter: "blur(80px)" }} />
+
+      <div className="container-x relative z-10">
+        <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-24 items-center">
+          
+          {/* Photo Side - Premium Treatment */}
+          <div className="lg:col-span-5 relative">
+            <Reveal variant="fade-right">
+              <div className="relative aspect-[4/5] w-full overflow-hidden" 
+                   style={{ 
+                     border: "1px solid oklch(0.94 0.006 60 / 0.1)",
+                     boxShadow: "0 20px 40px rgba(0,0,0,0.4)"
+                   }}>
+                <img 
+                  src={dArvind} 
+                  alt="Arvind Kumar, Managing Director"
+                  className="w-full h-full object-cover"
+                  style={{ 
+                    filter: "grayscale(100%) contrast(1.15) brightness(0.9)",
+                    transition: "filter 0.5s ease"
+                  }}
+                />
+                {/* Dark overlay gradient to blend bottom */}
+                <div className="absolute inset-0" style={{
+                  background: "linear-gradient(to top, oklch(0.07 0.005 240 / 0.9) 0%, transparent 40%)"
+                }} />
+                
+                {/* Gold corner accents */}
+                <div className="absolute top-4 left-4 w-4 h-4 border-t border-l border-gold/50" />
+                <div className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-gold/50" />
               </div>
-              <p className="font-display mt-1 text-sm uppercase leading-tight">{c.label}</p>
-              <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">{c.note}</p>
             </Reveal>
-          ))}
-        </div>
-
-        <Reveal delay={0.2}>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
-            <FileCheck2 size={13} className="text-gold" />
-            <span>Documents · Appreciation Letters · Work Orders available on request</span>
           </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
 
-function About() {
-  return (
-    <section id="about" className="relative overflow-hidden border-t border-border py-36"
-      style={{ background: "var(--background)" }}>
-      <div className="container-x grid items-start gap-16 lg:grid-cols-12">
-        <Reveal className="lg:col-span-5">
-          <div className="relative aspect-[4/5] overflow-hidden" style={{ border: "1px solid var(--border)" }}>
-            <img
-              src={aboutImg}
-              alt="Sangya Traders engineering team on site"
-              loading="lazy"
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-0"
-              style={{ background: "linear-gradient(to top, oklch(0.06 0.005 240 / 0.6) 0%, transparent 60%)" }} />
-            {/* Gold frame accent */}
-            <div className="absolute top-0 left-0 w-16 h-16"
-              style={{ background: "linear-gradient(135deg, oklch(0.72 0.16 78 / 0.25) 0%, transparent 60%)" }} />
-            <div className="absolute bottom-0 right-0 w-16 h-16"
-              style={{ background: "linear-gradient(315deg, oklch(0.72 0.16 78 / 0.25) 0%, transparent 60%)" }} />
+          {/* Quote Side */}
+          <div className="lg:col-span-7 relative">
+            <Reveal variant="fade-left">
+              {/* Massive background quote mark */}
+              <div className="absolute -top-16 -left-8 text-[15rem] leading-none font-display opacity-5 select-none" style={{ color: "var(--gold)" }}>
+                "
+              </div>
+              
+              <div className="relative z-10">
+                <SectionEyebrow>Director's Message</SectionEyebrow>
+                
+                <h2 className="font-display mt-8 text-3xl md:text-5xl lg:text-6xl uppercase leading-[1.1] text-white">
+                  "We don't just execute contracts; we engineer the <span className="text-gradient-gold">foundations of tomorrow</span>."
+                </h2>
+                
+                <p className="mt-8 text-base leading-relaxed text-muted-foreground max-w-2xl">
+                  Since 2007, our commitment has been to deliver scale without compromising on precision. Whether we are laying national optic fiber backbones or driving heavy viaduct piling, we view every project as a critical asset for India's growth. Our engineering teams operate with a singular focus: safe, timeline-driven execution that stands the test of time.
+                </p>
+
+                <div className="mt-12 flex flex-col gap-2 border-l-2 pl-6" style={{ borderColor: "var(--gold)" }}>
+                  <p className="font-display text-2xl uppercase text-white tracking-widest">Arvind Kumar</p>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-gold">Managing Director</p>
+                </div>
+              </div>
+            </Reveal>
           </div>
-        </Reveal>
 
-        <div className="lg:col-span-7">
-          <Reveal>
-            <SectionEyebrow>The Company</SectionEyebrow>
-            <h2 className="font-display mt-4 text-4xl uppercase md:text-5xl">
-              Sixteen years of <span className="text-gradient-gold">execution discipline</span>
-            </h2>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
-              Founded in 2007, Sangya Traders & Company has grown from a regional
-              contractor into a pan-India infrastructure execution firm. We have
-              partnered with India's largest EPC majors and government bodies to
-              deliver telecom, metro, civil, water, road and electrical
-              infrastructure — anchored by owned heavy machinery, an experienced
-              engineering cadre, and an uncompromising delivery culture.
-            </p>
-          </Reveal>
-
-          <div className="mt-16 relative">
-            {/* The continuous vertical line */}
-            <div className="absolute left-[60px] md:left-[100px] top-6 bottom-6 w-[1px]" style={{ background: "linear-gradient(to bottom, transparent, var(--border-gold) 15%, var(--border-gold) 85%, transparent)" }} />
-
-            <div className="flex flex-col">
-              {timeline.map((t, i) => (
-                <Reveal key={t.year} delay={i * 0.1}>
-                  <div
-                    className="group relative flex items-start gap-8 md:gap-12 py-8 cursor-default"
-                  >
-                    {/* Background glow sweep */}
-                    <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-[oklch(0.72_0.16_78/0.05)] to-transparent transition-transform duration-700 ease-out group-hover:translate-x-0" />
-
-                    {/* Glowing Node on Spine */}
-                    <div className="absolute left-[60px] md:left-[100px] top-11 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full border border-gold transition-all duration-500 group-hover:bg-gold group-hover:scale-[1.8]" style={{ background: "var(--background)" }} />
-                    <div className="absolute left-[60px] md:left-[100px] top-11 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ boxShadow: "0 0 20px 4px oklch(0.72 0.16 78 / 0.5)" }} />
-                    
-                    {/* Year */}
-                    <div className="w-[40px] md:w-[70px] shrink-0 text-right relative z-10 pt-1">
-                      <p className="font-numeric text-3xl md:text-4xl text-muted-foreground transition-colors duration-500 group-hover:text-gold">{t.year}</p>
-                    </div>
-                    
-                    {/* Content */}
-                    <div className="flex-1 relative z-10 transition-transform duration-500 group-hover:translate-x-6">
-                      <h4 className="font-display text-xl uppercase tracking-wide text-foreground transition-colors duration-500 group-hover:text-gold">{t.t}</h4>
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground max-w-lg transition-colors duration-500 group-hover:text-foreground/90">{t.d}</p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -966,7 +821,7 @@ function CtaBlock() {
           </p>
           <div className="mt-12 flex flex-wrap gap-4">
             <a
-              href="mailto:info@sangyatraders.com"
+              href="mailto:sangyaarvind1979@gmail.com"
               className="btn-gold group inline-flex items-center gap-3 px-9 py-4.5 text-[11px] font-bold uppercase tracking-[0.28em]"
               style={{ borderRadius: "2px" }}
             >
@@ -974,11 +829,11 @@ function CtaBlock() {
               <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
             </a>
             <a
-              href="mailto:info@sangyatraders.com"
-              className="group inline-flex items-center gap-3 border px-9 py-4.5 text-[11px] font-bold uppercase tracking-[0.28em] text-foreground transition-all duration-300 hover:border-gold hover:text-gold"
-              style={{ border: "1px solid oklch(0.94 0.006 60 / 0.25)", borderRadius: "2px" }}
+              href="tel:+917081886666"
+              className="btn-outline inline-flex items-center gap-3 px-9 py-4.5 text-[11px] font-bold uppercase tracking-[0.28em]"
+              style={{ borderRadius: "2px" }}
             >
-              Contact Team
+              <span>Call Us Now</span>
               <ArrowUpRight size={15} />
             </a>
           </div>
